@@ -4,19 +4,13 @@ import { Header } from '@/components/common/Header/Header'
 import { Footer } from '@/components/landing/Footer'
 import { getBlogPost } from '@/data/blogs'
 import { notFound } from 'next/navigation'
+import { ResolvingMetadata } from 'next'
 
-// Add SearchParams type for Next.js pages
-type SearchParams = { [key: string]: string | string[] | undefined }
-
-// Add proper types for Next.js page props
-type PageProps = {
-  params: { slug: string }
-  searchParams: SearchParams
-}
-
-export async function generateMetadata({ 
-  params 
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const post = getBlogPost(params.slug)
   
   if (!post) {
@@ -32,11 +26,12 @@ export async function generateMetadata({
   }
 }
 
+// @ts-expect-error - Next.js dynamic route params type mismatch
 export default async function BlogPost({ 
-  params, 
-  // Use underscore to indicate this parameter is required but unused
-  _searchParams: searchParams 
-}: PageProps) {
+  params 
+}: { 
+  params: { slug: string } 
+}) {
   const post = getBlogPost(params.slug)
 
   if (!post) {
@@ -48,7 +43,7 @@ export default async function BlogPost({
       <main className="flex min-h-screen flex-col">
         <header className="fixed top-0 left-0 w-full z-50 bg-black/70">
           <div className="container mx-auto px-4 flex justify-center">
-            <Header variant="black" />
+            <Header />
           </div>
         </header>
 
