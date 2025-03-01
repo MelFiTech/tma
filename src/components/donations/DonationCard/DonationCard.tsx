@@ -19,11 +19,9 @@ export const DonationCard = ({
   number,
   title, 
   description, 
-  image, 
-  buttonText,
-  buttonLink,
+  image,
   amounts 
-}: DonationCardProps) => {
+}: Omit<DonationCardProps, 'buttonText' | 'buttonLink'>) => {
   if (image) {
     return (
       <AnimatedSection className="rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-r from-[#6B2D75] to-[#3B82F6] w-full max-w-[600px] mb-8 lg:mb-0">
