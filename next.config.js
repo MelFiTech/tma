@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['donorbox.org']
+    domains: ['donorbox.org'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'donorbox.org',
+      }
+    ]
   },
   // Add this to ignore TypeScript errors during build
   typescript: {
