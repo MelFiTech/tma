@@ -3,23 +3,23 @@ import { Ticker } from '@/components/common/Ticker'
 export const Partners = () => {
   const partners = [
     {
-      image: "/images/partners/p-logo.png",
+      image: "/images/partners/sdg.png",
       alt: "Partner Logo 1"
     },
     {
-      image: "/images/partners/p-logo.png", 
+      image: "/images/partners/ksg.png", 
       alt: "Partner Logo 2"
     },
     {
-      image: "/images/partners/p-logo.png",
+      image: "/images/partners/lg.png",
       alt: "Partner Logo 3"
     },
     {
-      image: "/images/partners/p-logo.png",
+      image: "/images/partners/iur.png",
       alt: "Partner Logo 4"
     },
     {
-      image: "/images/partners/p-logo.png",
+      image: "/images/partners/fme.png",
       alt: "Partner Logo 5"
     }
   ]

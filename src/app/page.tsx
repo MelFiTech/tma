@@ -4,7 +4,6 @@ import { AboutUs } from '@/components/landing/AboutUs'
 import { Programs } from '@/components/landing/Programs'
 import { Campus } from '@/components/landing/Campus'
 import { Support } from '@/components/landing/Support'
-import { Team } from '@/components/landing/Team'
 import { News } from '@/components/landing/News'
 import { Partners } from '@/components/landing/Partners'
 import { Footer } from '@/components/landing/Footer'
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/50">
+      <header className="fixed top-0 left-0 w-full z-50 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
           <Header />
         </div>
@@ -30,8 +29,7 @@ export default function Home() {
           <Programs />
           <Campus />
           <Support />
-          <div className="h-[60px] sm:h-[80px] md:h-[100px]"></div>
-          <Team />
+          <div className="h-[60px] sm:h-[80px] md:h-[100px] bg-white"></div>
           <Partners />
           <News />
           <div className="h-[100px] sm:h-[120px] md:h-[150px]"></div>

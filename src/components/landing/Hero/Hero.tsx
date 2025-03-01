@@ -1,4 +1,4 @@
-import { Button } from '@/components/common/Button';
+import { DonateButton } from '@/components/common/DonateButton';
 import { WelcomeCard } from '../WelcomeCard/WelcomeCard';
 import { AnimatedSection } from '@/components/common/AnimatedSection';
 
@@ -16,9 +16,7 @@ export const Hero = () => {
               Dedicated to empowering the next generation by providing exceptional education. 
               Focused on character development and leadership skills for a brighter future.
             </p>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto">
-              Donate Now
-            </Button>
+            <DonateButton variant="primary" size="lg" className="w-full sm:w-auto" />
           </div>
           <div className="flex justify-center lg:justify-end mt-8 md:mt-20">
             <WelcomeCard />

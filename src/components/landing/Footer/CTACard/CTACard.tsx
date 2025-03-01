@@ -1,4 +1,4 @@
-import { Button } from '@/components/common/Button'
+import { DonateButton } from '@/components/common/DonateButton'
 import Image from 'next/image'
 import { AnimatedSection } from '@/components/common/AnimatedSection'
 
@@ -21,12 +21,10 @@ export const CTACard = () => {
           Give Hope, Change Lives<br />
           Every Donation Counts
         </h2>
-        <Button 
-          variant="primary"
-          className="bg-white !text-[#5a2662] px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-full text-xs sm:text-base font-semibold tracking-[-0.5px] sm:tracking-[-1px] hover:bg-gray-100 transition-colors"
-        >
-          Donate Now
-        </Button>
+        <DonateButton
+          variant="white"
+          size="lg"
+        />
       </div>
     </AnimatedSection>
   )

@@ -20,8 +20,8 @@ export const Footer = () => {
           {/* Main Content */}
           <div className="mb-8 sm:mb-16 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8 lg:gap-0">
             <AnimatedSection className="max-w-3xl mx-auto mt-8 sm:mt-16 text-center lg:text-left" delay={0.2}>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-white tracking-[-2px] lg:tracking-[-4px] mb-2.5 leading-tight lg:leading-[74px]">
-                Nurturing The Mind and Spirit<br className="hidden sm:block" />
+              <h2 className="text-2xl sm:text-2xl md:text-2xl lg:text-[50px] font-bold text-white tracking-[-2px] lg:tracking-[-4px] mb-2.5 leading-[24px] lg:leading-[60px]">
+                Nurturing The Mind and Spirit<br />
                 Of Our Future Generation
               </h2>
               <p className="text-white/80 text-base sm:text-lg tracking-[-1px] mb-8 max-w-2xl">

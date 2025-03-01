@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/common/Button'
+import { DonateButton } from '@/components/common/DonateButton'
 import { AnimatedSection } from '@/components/common/AnimatedSection'
 
 interface DonationCardProps {
@@ -58,14 +57,12 @@ export const DonationCard = ({
                   </div>
                 )}
               </div>
-              <Link href={buttonLink} className="w-full">
-                <Button 
-                  variant="outline"
-                  className="w-full sm:w-auto mt-auto bg-white/20 hover:bg-white/30 text-white border-none text-sm sm:text-base py-2 sm:py-2.5"
-                >
-                  {buttonText}
-                </Button>
-              </Link>
+              <div>
+                <DonateButton
+                  variant="white"
+                  className="w-full sm:w-auto"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -82,14 +79,12 @@ export const DonationCard = ({
       <p className="text-sm sm:text-base text-white/80 tracking-[-0.5px] sm:tracking-[-1px] leading-relaxed mb-3 sm:mb-4">
         {description}
       </p>
-      <Link href={buttonLink} className="w-full">
-        <Button 
-          variant="outline"
-          className="w-full sm:w-auto bg-white/20 hover:bg-white/30 text-white border-none text-sm sm:text-base py-2 sm:py-2.5"
-        >
-          {buttonText}
-        </Button>
-      </Link>
+      <div>
+        <DonateButton
+          variant="white"
+          className="w-full sm:w-auto"
+        />
+      </div>
     </AnimatedSection>
   )
 } 
