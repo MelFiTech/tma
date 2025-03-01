@@ -47,9 +47,9 @@ export const DonateButton = ({
   }, [])
 
   const sizes = {
-    sm: 'px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm',
-    md: 'px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base', 
-    lg: 'px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg'
+    sm: 'px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base',
+    md: 'px-4 py-2 text-base md:px-6 md:py-3 md:text-lg',
+    lg: 'px-5 py-2.5 text-lg md:px-8 md:py-4 md:text-xl'
   }
 
   const getVariantClasses = () => {
@@ -57,21 +57,24 @@ export const DonateButton = ({
       return cn(
         'bg-[#84368C]',
         'text-white',
-        'hover:bg-[#6B2D75]'
+        'hover:bg-[#6B2D75]',
+        'active:bg-[#5A2662]' // Added touch feedback
       )
     }
     if (variant === 'outline') {
       return cn(
-        'border border-current',
+        'border-2 border-current', // Increased border width for better visibility
         'text-[#84368C]',
-        'hover:bg-opacity-10'
+        'hover:bg-[#84368C]/10',
+        'active:bg-[#84368C]/20' // Added touch feedback
       )
     }
     if (variant === 'white') {
       return cn(
         'bg-white',
         'text-[#84368C]',
-        'hover:bg-gray-100'
+        'hover:bg-gray-100',
+        'active:bg-gray-200' // Added touch feedback
       )
     }
     return ''
@@ -83,13 +86,15 @@ export const DonateButton = ({
       <a 
         href="https://donorbox.org/sponsor-a-child-142?"
         className={cn(
-          'dbox-donation-button inline-flex items-center gap-2 transition-all duration-200 rounded-full hover:shadow-lg tracking-[-0.5px] sm:tracking-[-1px] w-auto',
+          'dbox-donation-button inline-flex items-center justify-center gap-2 transition-all duration-200 rounded-full hover:shadow-lg tracking-[-0.5px] touch-manipulation', // Added touch-manipulation and center alignment
+          'min-w-[120px] w-full md:w-auto', // Min width and responsive width
+          'font-medium', // Better readability on mobile
           getVariantClasses(),
           sizes[size],
           className
         )}
       >
-        <div className="relative w-5 h-5">
+        <div className="relative w-5 h-5 flex-shrink-0"> {/* Added flex-shrink-0 to prevent icon squishing */}
           <Image 
             src="https://donorbox.org/images/white_logo.svg" 
             alt="Donorbox"
@@ -100,7 +105,7 @@ export const DonateButton = ({
             )}
           />
         </div>
-        Donate
+        <span>Donate</span> {/* Wrapped text in span for better control */}
       </a>
     </>
   )

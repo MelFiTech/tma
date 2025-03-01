@@ -34,7 +34,7 @@ export default function Support() {
               />
             </div>
 
-            <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8">
+            <div className="w-full lg:w-1/2 space-y-6 sm:space-y-5">
               <DonationCard
                 number="2"
                 title="Sponsor a Child"

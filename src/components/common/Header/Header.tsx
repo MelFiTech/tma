@@ -27,9 +27,7 @@ export const Header = () => {
       dropdown: [
         { name: 'About Us', href: '/about' },
         { name: 'Our Programs', href: '/programs' },
-        { name: 'Gallery', href: '/gallery' },
-        { name: 'Support and Donations', href: '/support' },
-        { name: 'Projects', href: '/projects' }
+        { name: 'Support and Donations', href: '/support' }
       ]
     },
     { name: 'Blogs', href: '/blogs' },
