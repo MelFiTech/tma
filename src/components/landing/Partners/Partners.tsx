@@ -27,7 +27,7 @@ export const Partners = () => {
   return (
     <section className="w-full py-12 sm:py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-2px] text-gray-900 text-center mb-8 sm:mb-12 md:mb-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-4px] text-gray-900 text-center mb-8 sm:mb-12 md:mb-16">
           Our Partners
         </h2>
         

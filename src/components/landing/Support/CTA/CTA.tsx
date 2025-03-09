@@ -18,7 +18,7 @@ export const CTA = () => {
           <span className="text-[#5a2662] uppercase tracking-[-1px] font-semibold text-sm sm:text-base">
             {"Transform a Child's Future – Join Our Mission"}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6 tracking-[-2px] text-gray-900">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6 tracking-[-4px] text-gray-900">
             Support & Donations
           </h2>
           <p className="text-sm sm:text-base text-gray-700 tracking-[-1px] mb-8">

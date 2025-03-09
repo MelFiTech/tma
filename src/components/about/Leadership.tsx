@@ -38,8 +38,8 @@ const leaders = [
 
 export const Leadership = () => {
   return (
-    <section className="py-12 md:py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-12 md:py-20 bg-white px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -18,14 +18,14 @@ export const Campus = () => {
   ]
 
   return (
-    <AnimatedSection className="w-full py-12 md:py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <AnimatedSection className="w-full py-12 md:py-20 bg-white px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-8 md:mb-16">
           <span className="text-[#5a2662] uppercase tracking-[-0.5px] md:tracking-[-1px] font-semibold text-sm md:text-base">
             Campus and Facilities
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mt-3 md:mt-4 mb-4 md:mb-6 tracking-[-1px] md:tracking-[-2px] text-gray-900">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mt-3 md:mt-4 mb-4 md:mb-6 tracking-[-1px] md:tracking-[-4px] text-gray-900">
             A Safe, Nurturing, and Inspiring Learning Environment
           </h2>
           <p className="text-sm md:text-base text-gray-700 max-w-3xl mx-auto tracking-[-0.5px] md:tracking-[-1px]">
@@ -46,4 +46,4 @@ export const Campus = () => {
       </div>
     </AnimatedSection>
   )
-} 
+}

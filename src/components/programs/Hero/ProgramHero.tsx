@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export const ProgramHero = () => {
   return (
-    <section className="relative w-full min-h-[550px]">
+    <section className="relative w-full min-h-[550px] px-4 sm:px-6 lg:px-20">
       <Image
         src="/images/programs-hero.png"
         alt="Programs Hero Background"
@@ -16,7 +16,7 @@ export const ProgramHero = () => {
         <Header />
       </div>
       <div className="absolute inset-0 bg-black/50" />
-      <div className="container mx-auto px-4 relative h-full">
+      <div className="container mx-auto relative h-full">
         <AnimatedSection className="flex items-center justify-left h-full pt-48">
           <div className="max-w-2xl">
             <h1 className="text-6xl font-bold text-white tracking-[-4px] mb-6">
@@ -30,4 +30,4 @@ export const ProgramHero = () => {
       </div>
     </section>
   )
-} 
+}

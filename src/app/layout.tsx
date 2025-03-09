@@ -14,9 +14,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
       <body className={`${inter.className} bg-gray-50 antialiased`}>
-        <div className="min-h-screen w-full overflow-x-hidden">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   )

@@ -35,7 +35,7 @@ export const Header = () => {
   ]
 
   return (
-    <header className={`fixed top-0 md:top-8 w-screen md:w-[90%] max-w-[1190px] z-50 ${isScrolled ? 'bg-black' : 'bg-white/10'} backdrop-blur-[19px] md:rounded-[50px] transition-colors duration-300`}>
+    <header className={`fixed top-0 md:top-8 w-screen md:w-[90%] max-w-[1190px] z-50 ${isScrolled ? 'bg-black' : 'bg-black/80'} backdrop-blur-[19px] md:rounded-[50px] transition-colors duration-300`}>
       <div className="w-full px-4 sm:px-6">
         <div className="flex items-center justify-between py-2.5 sm:py-3">
           <Link href="/" className="flex items-center gap-2 md:gap-3">

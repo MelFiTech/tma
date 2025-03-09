@@ -22,8 +22,8 @@ export const Who = () => {
   ]
 
   return (
-    <AnimatedSection className="w-full py-12 sm:py-16 md:py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <AnimatedSection className="w-full py-12 sm:py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 items-start">
           {/* Image Section */}
           <div className="flex-1 w-full">

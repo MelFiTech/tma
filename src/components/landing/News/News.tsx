@@ -18,8 +18,8 @@ export const News = () => {
   ]
 
   return (
-    <AnimatedSection className="w-full py-12 sm:py-16 md:py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <AnimatedSection className="w-full py-12 sm:py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         {/* Header with Navigation */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-0 mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-2px] sm:tracking-[-4px] text-gray-900 text-center sm:text-left">

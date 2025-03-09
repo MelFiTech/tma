@@ -4,10 +4,10 @@ import { AnimatedSection } from '@/components/common/AnimatedSection'
 
 export const Support = () => {
   return (
-    <AnimatedSection className="w-full pt-12 sm:pt-16 md:pt-20 pb-32 sm:pb-48 md:pb-64 bg-white">
-      <div className="container mx-auto px-4">
+    <AnimatedSection className="w-full pt-12 sm:pt-16 md:pt-20 pb-32 sm:pb-48 md:pb-64 bg-white px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         {/* Image Container */}
-        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] px-4 sm:px-8 md:px-12 pt-8 sm:pt-16 md:pt-24">
+        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] pt-8 sm:pt-16 md:pt-24">
           <div className="rounded-[16px] sm:rounded-[24px] md:rounded-[32px] overflow-hidden h-full">
             <Image
               src="/images/image8.png"

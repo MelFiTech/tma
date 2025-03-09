@@ -4,8 +4,8 @@ import { AnimatedSection } from '@/components/common/AnimatedSection'
 
 export const AboutUs = () => {
   return (
-    <AnimatedSection className="w-full py-12 md:py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <AnimatedSection className="w-full py-12 md:py-20 bg-white px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
           {/* Images Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1 w-full">
@@ -30,8 +30,8 @@ export const AboutUs = () => {
             <span className="text-[#6B2D75] uppercase tracking-wider font-medium text-sm md:text-base">
               About Us
             </span>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl text-gray-900 font-bold mt-3 md:mt-4 mb-4 md:mb-6 tracking-[-1px] leading-tight">
-              Building a Brighter Future for Orphans and Underprivileged Children
+            <h2 className="text-3xl md:text-5xl lg:text-5xl text-gray-900 font-bold mt-3 md:mt-4 mb-4 md:mb-6 tracking-[-4px]">
+              Building a Brighter Future for Orphans & Underprivileged Children
             </h2>
             <p className="text-gray-700 mb-6 md:mb-8 tracking-[-0.5px] leading-relaxed text-sm md:text-base">
               Create a world where every child, regardless of their background, has access to quality education and the opportunity to reach their full potential

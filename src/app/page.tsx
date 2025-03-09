@@ -18,21 +18,20 @@ export default function Home() {
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-50 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20 flex justify-center">
           <Header />
         </div>
       </header>
-      <main className="flex min-h-screen flex-col items-center w-full overflow-x-hidden">
-        <div className="w-full max-w-[100vw]">
+      <main className="flex min-h-screen flex-col items-center">
+        <div className="w-full">
           <Hero />
           <AboutUs />
           <Programs />
           <Campus />
           <Support />
-          <div className="h-[60px] sm:h-[80px] md:h-[100px] bg-white"></div>
           <Partners />
           <News />
-          <div className="h-[100px] sm:h-[120px] md:h-[150px]"></div>
+          <div className="h-[100px]"></div>
           <Footer />
         </div>
       </main>

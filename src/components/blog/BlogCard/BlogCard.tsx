@@ -19,7 +19,7 @@ export const BlogCard = ({ post, index }: BlogCardProps) => {
       className="h-full"
     >
       <Link href={`/blogs/${post.slug}`} className="h-full block">
-        <article className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+        <article className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col border border-gray-200">
           <div className="relative h-[200px] w-full">
             <Image
               src={post.image}

@@ -23,8 +23,8 @@ export const Stem = () => {
   ]
 
   return (
-    <AnimatedSection className="w-full py-12 sm:py-16 md:py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <AnimatedSection className="w-full py-12 sm:py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         <div className="bg-[#F9F9FB] p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl">
           <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 items-start">
             {/* Content Section */}

@@ -24,14 +24,14 @@ export const Programs = () => {
   ]
 
   return (
-    <AnimatedSection className="w-full py-12 md:py-20 bg-[#F8F9FA]">
-      <div className="container mx-auto px-4">
+    <AnimatedSection className="w-full py-12 md:py-20 bg-[#F8F9FA] px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-8 md:mb-16">
           <span className="text-[#5a2662] uppercase tracking-wider font-semibold text-sm md:text-base">
             Programs & Curriculum
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-3 md:mt-4 mb-4 md:mb-6 tracking-[-1px] text-gray-900">
+          <h2 className="text-3xl md:text-5xl font-bold mt-3 md:mt-4 mb-4 md:mb-6 tracking-[-4px] text-gray-900">
             A Holistic Education for the Modern World
           </h2>
           <p className="text-sm md:text-base text-gray-700 max-w-3xl mx-auto tracking-[-0.5px]">

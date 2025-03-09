@@ -9,14 +9,14 @@ export const Footer = () => {
     <div className="w-full bg-[#FFFFF]">
       <div className="w-full bg-[#8F4996] rounded-t-[32px] sm:rounded-t-[40px] shadow-[0_-20px_30px_-15px_rgba(143,73,150,0.04)]">
         {/* CTA Card Section */}
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <AnimatedSection className="relative -top-16 sm:-top-32">
             <CTACard />
           </AnimatedSection>
         </div>
 
         {/* Footer Content */}
-        <div className="container mx-auto px-4 pb-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20 pb-8">
           {/* Main Content */}
           <div className="mb-8 sm:mb-16 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8 lg:gap-0">
             <AnimatedSection className="max-w-3xl mx-auto mt-8 sm:mt-16 text-center lg:text-left" delay={0.2}>
