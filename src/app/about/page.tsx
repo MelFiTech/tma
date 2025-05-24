@@ -4,6 +4,7 @@ import { Who } from '@/components/about/Who'
 import { AboutHero } from '@/components/about/Hero'
 import { WhyWeExist } from '@/components/about/WhyWeExist'
 import { Leadership } from '@/components/about/Leadership'
+import { Team } from '@/components/about/Team'
 
 export const metadata: Metadata = {
   title: 'About Us - TMA',
@@ -25,6 +26,9 @@ export default function About() {
         <WhyWeExist />
 
         <Leadership />
+
+        {/* Team Section */}
+        <Team />
 
         <div className="h-[200px]" />
 
