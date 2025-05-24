@@ -1,17 +1,20 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { AnimatedSection } from '@/components/common/AnimatedSection'
+import { urlFor } from '@/lib/sanity'
+import { SanityImage } from '@/types/sanity'
 
 interface TeamCardProps {
   name: string
   title: string
-  image: string
+  image?: SanityImage
   linkedIn?: string
   onClick?: () => void
 }
 
-export const TeamCard = ({ name, title, linkedIn, onClick }: TeamCardProps) => {
+export const TeamCard = ({ name, title, image, linkedIn, onClick }: TeamCardProps) => {
   return (
     <AnimatedSection>
       <div 
@@ -20,11 +23,20 @@ export const TeamCard = ({ name, title, linkedIn, onClick }: TeamCardProps) => {
       >
         {/* Image */}
         <div className="relative w-[80%] sm:w-full mx-auto aspect-square mb-3 sm:mb-4 bg-gray-100 rounded-full overflow-hidden">
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
-            <div className="text-gray-500 text-xl sm:text-2xl md:text-3xl font-bold">
-              {name.split(' ').map(n => n[0]).join('')}
+          {image ? (
+            <Image
+              src={urlFor(image).width(200).height(200).url()}
+              alt={image.alt || name}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
+              <div className="text-gray-500 text-xl sm:text-2xl md:text-3xl font-bold">
+                {name.split(' ').map(n => n[0]).join('')}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Content */}

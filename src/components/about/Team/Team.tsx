@@ -1,103 +1,39 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { TeamCard } from '../TeamCard'
-
-interface TeamMember {
-  name: string
-  title: string
-  image: string
-  department: string
-  location: string
-  bio: string
-}
-
-const teamMembers: TeamMember[] = [
-  {
-    name: "Taofeek A. Fowotade",
-    title: "Principal",
-    image: "team/placeholder1",
-    department: "Administration",
-    location: "Katsina",
-    bio: "Mallam Taofeek is a seasoned educator with a rich educational background in teaching and linguistics. He has taught across various educational levels, from nursery to tertiary institutions, in both Nigeria and the Niger Republic. His extensive experience has equipped him with a unique understanding of the educational landscape.\n\nAs a school administrator, Mallam Fowotade has held key positions, including Head of Department, Vice Principal, and Principal of schools. He has developed academic calendars, trained teachers, and established operational policies for schools, showcasing his expertise in educational leadership.\n\nCurrently, Mallam Fowotade serves as the Principal at the Magnet Academy at Alhuda Katsina, where he continues to make a positive impact on students and the educational community. His dedication to education is evident in his work, inspiring students and fostering a love for learning."
-  },
-  {
-    name: "Sumayya Abubakar Yakubu",
-    title: "School Nurse", 
-    image: "team/placeholder2",
-    department: "Medical",
-    location: "Katsina",
-    bio: "Sumayya Abubakar Yakubu is a dedicated school nurse from Bauchi State with a Bachelor of Science degree in Pharmacology. As a compassionate and health-conscious professional, she plays a vital role in promoting student well-being through health education, first aid, and routine medical care. Her background in pharmacology equips her with the knowledge to support preventive healthcare and manage minor ailments effectively within the school environment."
-  },
-  {
-    name: "Abubakar Ismail",
-    title: "School Imam/Islamic Studies & Qur'an Teacher",
-    image: "team/placeholder3", 
-    department: "Academic",
-    location: "Katsina",
-    bio: "Abubakar Ismail is a dedicated Islamic scholar and educator from Kankara Local Government Area of Katsina State, Nigeria. A graduate of Arabic Language, he brings deep knowledge and experience in leading Islamiyyah schools. He currently serves as the school Imam as well as the Islamic Studies and Qur'an teacher, guiding students in both religious knowledge and moral upbringing as well Qur'an memorisation. His passion for teaching and spiritual leadership makes him a respected figure within the school community."
-  },
-  {
-    name: "Mika'ilu Isyaku",
-    title: "Housemaster",
-    image: "team/placeholder4",
-    department: "Administration",
-    location: "Katsina",
-    bio: "Mika'ilu Isyaku is a committed and disciplined housemaster who plays a key role in ensuring the welfare, safety, and moral guidance of our pupils. With a calm and approachable demeanor, he fosters a supportive living environment that promotes discipline, responsibility, and academic focus. Mika'ilu supervises the school maintenance as well."
-  },
-  {
-    name: "Maryam Abbas",
-    title: "School Matron & Cook",
-    image: "team/placeholder5",
-    department: "Support",
-    location: "Katsina",
-    bio: "Maryam Abbas is a compassionate and hardworking school matron who goes beyond providing hostel care to support the overall well-being of students. With added knowledge in Islamic education, she nurtures both the physical and spiritual growth of the children. In addition to her matron duties, she is also an experienced cook, ensuring students are well-fed with nutritious and balanced meals. Her motherly care, moral guidance, and culinary skills make her a beloved and trusted presence in the school community."
-  },
-  {
-    name: "Maryam Abdullahi",
-    title: "Science Teacher",
-    image: "team/placeholder6",
-    department: "Academic",
-    location: "Katsina",
-    bio: "Maryam is a passionate and committed science teacher from Borno State. She holds a Bachelor of Science in Biology Education (B.Sc.Ed), which combines strong scientific knowledge with effective teaching strategies. With her background, she inspires curiosity and critical thinking in her students, making science engaging and accessible. Maryam is dedicated to nurturing the next generation of scientists through hands-on learning and a supportive classroom environment."
-  },
-  {
-    name: "Shakira Akanbi O.",
-    title: "Literacy Teacher",
-    image: "team/placeholder7",
-    department: "Academic",
-    location: "Katsina",
-    bio: "Akanbi Shakirat Oyindamola is a passionate literacy teacher from Oyo State. She holds a degree in Library and Information Science and is committed to building strong reading and writing skills in young learners. With a deep understanding of language development, she creates engaging and supportive learning environments that foster a lifelong love for reading. Her dedication to literacy education helps students gain the foundational skills they need for academic success."
-  },
-  {
-    name: "Umar Ibrahim Adamu",
-    title: "School Guard II",
-    image: "team/placeholder8",
-    department: "Security",
-    location: "Katsina",
-    bio: "Umar Ibrahim Adamu is a dedicated security professional from Katsina State. He holds a diploma and brings several years of experience in security services, having worked in both Abuja and Bauchi. Known for his vigilance and discipline, Umar is currently one of the security guards at Magnet Academy, Al-Huda, Katsina. His commitment to maintaining a safe and secure environment makes him a valued member of the school community."
-  },
-  {
-    name: "Sani Abdullahi",
-    title: "School Guard I",
-    image: "team/placeholder9",
-    department: "Security",
-    location: "Katsina",
-    bio: "Sani Abdullahi is a highly experienced security guard with over twenty years of dedicated service in various security companies and corporate organizations. His extensive knowledge, discipline, and leadership skills have earned him the position of the most senior guard on our team. Sani is deeply committed to ensuring the safety and security of lives and property, and he serves as a role model to younger guards through his professionalism and sense of duty."
-  }
-]
+import { client, TEAM_MEMBERS_BY_LOCATION_QUERY } from '@/lib/sanity'
+import { TeamMember } from '@/types/sanity'
 
 export const Team = () => {
   const [selectedLocation, setSelectedLocation] = useState('Katsina')
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([])
+  const [loading, setLoading] = useState(true)
 
   // Add all potential locations, including inactive ones
   const allLocations = ['Katsina', 'Kaduna', 'Abuja', 'Lagos']
 
-  const filteredMembers = teamMembers.filter(member => 
-    member.location === selectedLocation
-  )
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      setLoading(true)
+      try {
+        const members = await client.fetch(TEAM_MEMBERS_BY_LOCATION_QUERY, {
+          location: selectedLocation
+        })
+        setTeamMembers(members)
+      } catch (error) {
+        console.error('Error fetching team members:', error)
+        // Fallback to static data if Sanity fails
+        setTeamMembers([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTeamMembers()
+  }, [selectedLocation])
 
   const openModal = (member: TeamMember) => {
     setSelectedMember(member)
@@ -149,19 +85,44 @@ export const Team = () => {
           STAFF PROFILE
         </motion.h3>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {[...Array(9)].map((_, index) => (
+              <div key={index} className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-[#EAEEF2] h-full animate-pulse">
+                <div className="w-[80%] sm:w-full mx-auto aspect-square mb-3 sm:mb-4 bg-gray-200 rounded-full"></div>
+                <div className="text-center">
+                  <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-          {filteredMembers.map((member, index) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <TeamCard {...member} onClick={() => openModal(member)} />
-            </motion.div>
-          ))}
-        </div>
+        {!loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member._id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <TeamCard {...member} onClick={() => openModal(member)} />
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && teamMembers.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No team members found for {selectedLocation}.</p>
+            <p className="text-gray-400 text-sm mt-2">Check back later or try a different location.</p>
+          </div>
+        )}
 
         {/* Modal */}
         {selectedMember && (

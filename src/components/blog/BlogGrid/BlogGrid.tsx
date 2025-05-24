@@ -39,6 +39,25 @@ export const BlogGrid = ({
   const startIndex = (currentPage - 1) * postsPerPage
   const paginatedPosts = filteredPosts.slice(startIndex, startIndex + postsPerPage)
 
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const pageNumbers = []
+    const maxVisible = 5
+
+    let startPage = Math.max(1, currentPage - 2)
+    const endPage = Math.min(totalPages, startPage + maxVisible - 1)
+
+    if (endPage - startPage + 1 < maxVisible) {
+      startPage = Math.max(1, endPage - maxVisible + 1)
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i)
+    }
+
+    return pageNumbers
+  }
+
   return (
     <div className="w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-20">
       <div className="container mx-auto">
@@ -68,44 +87,68 @@ export const BlogGrid = ({
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center mt-12">
-            <div className="flex items-center gap-2">
+            <nav className="flex items-center gap-2" aria-label="Pagination">
+              {/* Previous Button */}
               <button
-                className="w-8 h-8 flex items-center justify-center rounded bg-white text-gray-600 hover:bg-gray-100 disabled:opacity-50"
-                onClick={() => setCurrentPage((prev: number) => Math.max(prev - 1, 1))}
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-4 h-4 mr-1" />
+                Previous
               </button>
-              
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(page => page === 1 || page === totalPages || Math.abs(currentPage - page) <= 1)
-                .map((page, index, array) => (
+
+              {/* Page Numbers */}
+              <div className="flex items-center gap-1">
+                {currentPage > 2 && (
                   <>
-                    {index > 0 && array[index - 1] !== page - 1 && (
-                      <span key={`ellipsis-${page}`} className="px-2">...</span>
-                    )}
                     <button
-                      key={page}
-                      className={`w-8 h-8 flex items-center justify-center rounded ${
-                        currentPage === page
-                          ? 'bg-black text-white'
-                          : 'bg-white text-gray-600 hover:bg-gray-100'
-                      }`}
-                      onClick={() => setCurrentPage(page)}
+                      onClick={() => setCurrentPage(1)}
+                      className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
                     >
-                      {page}
+                      1
                     </button>
+                    {currentPage > 3 && <span className="px-2">...</span>}
                   </>
+                )}
+
+                {getPageNumbers().map(number => (
+                  <button
+                    key={number}
+                    onClick={() => setCurrentPage(number)}
+                    className={`px-3 py-2 text-sm font-medium rounded-md ${
+                      currentPage === number
+                        ? 'bg-black text-white border border-black'
+                        : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    {number}
+                  </button>
                 ))}
 
+                {currentPage < totalPages - 1 && (
+                  <>
+                    {currentPage < totalPages - 2 && <span className="px-2">...</span>}
+                    <button
+                      onClick={() => setCurrentPage(totalPages)}
+                      className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                    >
+                      {totalPages}
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Next Button */}
               <button
-                className="w-8 h-8 flex items-center justify-center rounded bg-white text-gray-600 hover:bg-gray-100 disabled:opacity-50"
-                onClick={() => setCurrentPage((prev: number) => Math.min(prev + 1, totalPages))}
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <ChevronRight className="w-4 h-4" />
+                Next
+                <ChevronRight className="w-4 h-4 ml-1" />
               </button>
-            </div>
+            </nav>
           </div>
         )}
       </div>
