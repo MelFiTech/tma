@@ -63,7 +63,7 @@ export const WhyWeExist = () => {
           <div className="flex-1 w-full">
             <div className="relative h-[300px] sm:h-[450px] md:h-[550px] lg:h-[650px] w-full">
               <Image
-                src="/images/students-with-teacher.png"
+                src="/images/whywe.jpeg"
                 alt="Students with teacher"
                 fill
                 className="object-cover object-top lg:object-center rounded-2xl sm:rounded-3xl"
