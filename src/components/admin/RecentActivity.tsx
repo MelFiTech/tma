@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { client } from '@/lib/sanity'
 
 interface ActivityItem {
@@ -32,7 +32,7 @@ export default function RecentActivity() {
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('7days')
   const [filteredCount, setFilteredCount] = useState(0)
 
-  const filterOptions: FilterOption[] = [
+  const filterOptions: FilterOption[] = useMemo(() => [
     { value: 'today', label: 'Today', days: 0 },
     { value: '7days', label: 'Last 7 days', days: 7 },
     { value: '30days', label: 'Last 30 days', days: 30 },
@@ -40,26 +40,26 @@ export default function RecentActivity() {
     { value: '180days', label: 'Last 180 days', days: 180 },
     { value: '1year', label: 'Last year', days: 365 },
     { value: 'all', label: 'All time' }
-  ]
-
-  const getDateFilterForQuery = (filter: TimeFilter): string => {
-    if (filter === 'all') return ''
-    
-    const now = new Date()
-    let startDate: Date
-    
-    if (filter === 'today') {
-      startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    } else {
-      const filterOption = filterOptions.find(opt => opt.value === filter)
-      const daysBack = filterOption?.days || 7
-      startDate = new Date(now.getTime() - (daysBack * 24 * 60 * 60 * 1000))
-    }
-    
-    return ` && _updatedAt >= "${startDate.toISOString()}"`
-  }
+  ], [])
 
   useEffect(() => {
+    const getDateFilterForQuery = (filter: TimeFilter): string => {
+      if (filter === 'all') return ''
+      
+      const now = new Date()
+      let startDate: Date
+      
+      if (filter === 'today') {
+        startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      } else {
+        const filterOption = filterOptions.find(opt => opt.value === filter)
+        const daysBack = filterOption?.days || 7
+        startDate = new Date(now.getTime() - (daysBack * 24 * 60 * 60 * 1000))
+      }
+      
+      return ` && _updatedAt >= "${startDate.toISOString()}"`
+    }
+
     async function fetchActivity() {
       try {
         setLoading(true)
@@ -165,7 +165,7 @@ export default function RecentActivity() {
     return () => {
       if (interval) clearInterval(interval)
     }
-  }, [useApiRoute, timeFilter])
+  }, [useApiRoute, timeFilter, filterOptions])
 
   const formatDateTime = (dateString: string) => {
     const date = new Date(dateString)

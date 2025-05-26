@@ -24,8 +24,6 @@ export default function Support() {
                   title="Make a Donation"
                   description="Every contribution helps us provide tuition-free education, housing, meals, and essential resources to our students."
                   image="/images/donations/volunteers.jpg"
-                  buttonText="Donate Now"
-                  buttonLink="/donate"
                   amounts={[
                     { amount: "$50", description: "Provides school supplies for a student for one year." },
                     { amount: "$100", description: "Covers meals for a student for six months." },
@@ -40,24 +38,18 @@ export default function Support() {
                   number="2"
                   title="Sponsor a Child"
                   description="Transform a child's life by becoming a long-term sponsor. Your sponsorship covers education, meals, housing, and mentorship"
-                  buttonText="Become a Sponsor"
-                  buttonLink="/sponsor"
                 />
 
                 <DonationCard
                   number="3"
                   title="Partner with Us"
                   description="We welcome partnerships with organizations, businesses, and philanthropists who share our vision. Let's work together to expand educational opportunities for underserved children"
-                  buttonText="Partner With Us"
-                  buttonLink="/partner"
                 />
 
                 <DonationCard
                   number="4"
                   title="Volunteer & Get Involved"
                   description="Your time and skills can make a difference. Join us in mentorship programs, fundraising initiatives, or skill-based training for our students"
-                  buttonText="Become a Volunteer"
-                  buttonLink="/volunteer"
                 />
               </div>
             </div>

@@ -308,7 +308,12 @@ export default function EditBlogPost() {
       }
 
       // Handle content image - use existing or upload new
-      let contentImageAsset = existingContentImage?.asset || existingContentImage
+      let contentImageAsset: unknown = null
+      if (existingContentImage && typeof existingContentImage === 'object' && existingContentImage !== null) {
+        const imageObj = existingContentImage as { asset?: unknown }
+        contentImageAsset = imageObj.asset || existingContentImage
+      }
+      
       if (contentImage) {
         const formData = new FormData()
         formData.append('file', contentImage.file)
@@ -391,7 +396,7 @@ export default function EditBlogPost() {
       }
 
       // Create update data
-      const blogPostData = {
+      const blogPostData: Record<string, unknown> = {
         title: title.trim(),
         slug: {
           current: slug.trim(),
@@ -404,8 +409,14 @@ export default function EditBlogPost() {
         author: author.trim() || 'TMA Team',
         publishedAt: publishedAt || new Date().toISOString(),
         featured,
-        ...(featuredImageAsset && { featuredImage: featuredImageAsset }),
-        ...(featuredImageAlt.trim() && { featuredImageAlt: featuredImageAlt.trim() })
+      }
+
+      if (featuredImageAsset) {
+        blogPostData.featuredImage = featuredImageAsset
+      }
+
+      if (featuredImageAlt.trim()) {
+        blogPostData.featuredImageAlt = featuredImageAlt.trim()
       }
 
       console.log('Updating blog post with data:', blogPostData)
@@ -647,11 +658,11 @@ export default function EditBlogPost() {
                     className="hidden"
                   />
 
-                  {(featuredImage || existingFeaturedImage) && (
+                  {(featuredImage || Boolean(existingFeaturedImage)) && (
                     <div className="relative border border-gray-200 rounded-lg p-3">
                       <div className="relative h-48 mb-2">
                         <Image
-                          src={featuredImage?.preview || urlFor(existingFeaturedImage).width(600).height(400).url()}
+                          src={featuredImage?.preview || (existingFeaturedImage ? urlFor(existingFeaturedImage).width(600).height(400).url() : '')}
                           alt={featuredImageAlt || 'Featured image'}
                           fill
                           className="object-cover rounded"
@@ -678,7 +689,7 @@ export default function EditBlogPost() {
                         className="text-gray-900"
                       />
                       
-                      {!featuredImage && existingFeaturedImage && (
+                      {!featuredImage && Boolean(existingFeaturedImage) && (
                         <button
                           type="button"
                           onClick={() => featuredFileInputRef.current?.click()}
@@ -722,11 +733,15 @@ export default function EditBlogPost() {
                     className="hidden"
                   />
 
-                  {(contentImage || existingContentImage) && (
+                  {(contentImage || Boolean(existingContentImage)) && (
                     <div className="relative border border-gray-200 rounded-lg p-3">
                       <div className="relative h-48 mb-2">
                         <Image
-                          src={contentImage?.preview || urlFor(existingContentImage.asset || existingContentImage).width(600).height(400).url()}
+                          src={contentImage?.preview || (existingContentImage ? (() => {
+                            const imageObj = existingContentImage as { asset?: unknown }
+                            const imageAsset = imageObj.asset || existingContentImage
+                            return urlFor(imageAsset).width(600).height(400).url()
+                          })() : '')}
                           alt={contentImageAlt || 'Content image'}
                           fill
                           className="object-cover rounded"
@@ -753,7 +768,7 @@ export default function EditBlogPost() {
                         className="text-gray-900"
                       />
                       
-                      {!contentImage && existingContentImage && (
+                      {!contentImage && Boolean(existingContentImage) && (
                         <button
                           type="button"
                           onClick={() => contentFileInputRef.current?.click()}

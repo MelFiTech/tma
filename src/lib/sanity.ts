@@ -5,12 +5,12 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01'
 
-// Read-only client for public data (can use CDN)
+// Read-only client for public data (can use CDN for better performance)
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: false,
+  useCdn: process.env.NODE_ENV === 'production', // Use CDN in production for better performance
 })
 
 // Write client for admin operations (server-side only, includes token)
@@ -24,7 +24,7 @@ export const writeClient = createClient({
 
 const builder = imageUrlBuilder(client)
 
-export const urlFor = (source: unknown) => {
+export const urlFor = (source: Parameters<typeof builder.image>[0]) => {
   return builder.image(source)
 }
 
